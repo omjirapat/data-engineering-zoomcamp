@@ -9,6 +9,7 @@ BASE_API_URL = "https://us-central1-dlthub-analytics.cloudfunctions.net/data_eng
 
 def paginated_getter():
     page_number = 1
+    total_pages = 1
 
     while True:
         # Set the query parameters
@@ -21,12 +22,22 @@ def paginated_getter():
         print(f'got page number {page_number} with {len(page_json)} records')
 
         # if the page has no records, stop iterating
+        # if page_json:
+        #     yield page_json
+        #     page_number += 1
+        # else:
+        #     # No more data, break the loop
+        #     break
         if page_json:
-            yield page_json
+            yield {
+                'current_page': page_number,
+                'total_pages' : total_pages,
+                'data': page_json  
+            }
             page_number += 1
+            total_pages += 1
         else:
-            # No more data, break the loop
-            break
+            break        
 
 if __name__ == '__main__':
     # Use the generator to iterate over pages
