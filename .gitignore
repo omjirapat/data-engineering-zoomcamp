@@ -7,8 +7,12 @@
 **.env
 **__pycache__/
 .ipynb_checkpoints/
+<<<<<<< HEAD
 # you shouldn't commit these into source control
 # these are the default directory names, adjust/add to fit your needs
 target/
 dbt_packages/
 logs/
+=======
+*.duckdb
+>>>>>>> 8c165d4ec7330a6207ce248174da12c80d039784
